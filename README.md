@@ -1,6 +1,6 @@
 # shadowrocket-rules-joe
 
-Shadowrocket 使用方法可以查看： @https://houjoe.me/posts/shadowrocket-guide/
+Shadowrocket 使用方法可以查看： https://houjoe.me/posts/shadowrocket-guide/
 
 这个仓库放置我的 Shadowrocket 规则，方便在 GitHub 里管理和更新
 
