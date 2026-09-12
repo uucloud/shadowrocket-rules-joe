@@ -13,14 +13,18 @@ https://raw.githubusercontent.com/uucloud/shadowrocket-rules-joe/main/uucloud-sh
 ```
 
 - AI 服务统一分组，默认美国节点；普通 Google 服务保留独立分组。
+- 合并上游 Typeless 独立分组（默认新加坡）和韩国节点选项；地区过滤沿用个人版的边界匹配，美国组每小时测速。
 - Netflix、Disney+、HBO 合并为「海外流媒体」，默认新加坡节点。
 - Slack 保留「AgentNEO 节点组」；首页的节点订阅需命名为 `AGENTNEO`，且节点名称含 `x1.0`。未使用此订阅时，在 Slack 分组手动选择其他策略。
 - 游戏下载的具体域名优先走直连，其他游戏流量保持原来的游戏平台策略。
+- 小宇宙、多邻国和 `rmbgame.net` 走直连；LinkedIn 归入社交分组，Chime、Resilio、Matters 使用代理，Activision 归入游戏平台。
 - 外部规则集从 37 条引用精简为 30 条；删除重复规则和旧 YouTube 域名黑名单，清理支付、评论等业务域名的旧拦截项。
 - 移除 URL 重写及 MITM；保留的域名广告拦截优先于服务分流。
 - 保留国内直连和最后的 `FINAL,PROXY`。
 
 修改此文件并推送到本仓库的 `main` 后，手机才能下载到新版本。配置自动更新只下载同名文件，不会自动合并上游 `shadowrocket-rules.conf` 的变更。以下 Pages 地址属于上游配置；个人版使用上面的 GitHub Raw 地址，不依赖 Pages 部署。
+
+本轮合并范围及保留差异见 [上游合并记录](./docs/upstream-merge-2026-09-12.md)。
 
 ## 📦 配置版本选择
 
