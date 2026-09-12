@@ -4,18 +4,27 @@ Shadowrocket 使用方法可以查看： https://houjoe.me/posts/shadowrocket-gu
 
 这个仓库放置我的 Shadowrocket 规则，方便在 GitHub 里管理和更新
 
-## 🚀 自动部署
+## uucloud 个人配置
 
-本项目已经集成了 **Cloudflare Pages** 自动部署功能！这意味着：
+本仓库的个人配置为 [`uucloud-shadowrocket-rules.conf`](./uucloud-shadowrocket-rules.conf)。固定更新地址：
 
-- ✅ 每次我提交代码更改到 GitHub 仓库时，配置文件会自动部署到 Cloudflare Pages
-- ✅ 无需手动操作，规则更新会实时同步到线上
-- ✅ 通过 Cloudflare 的全球 CDN 网络，提供更快速、更稳定的访问体验
-- ✅ 你使用的配置链接始终指向最新版本的规则文件
+```text
+https://raw.githubusercontent.com/uucloud/shadowrocket-rules-joe/main/uucloud-shadowrocket-rules.conf
+```
+
+- AI 服务统一分组，默认美国节点；普通 Google 服务保留独立分组。
+- Netflix、Disney+、HBO 合并为「海外流媒体」，默认新加坡节点。
+- Slack 保留「AgentNEO 节点组」；首页的节点订阅需命名为 `AGENTNEO`，且节点名称含 `x1.0`。未使用此订阅时，在 Slack 分组手动选择其他策略。
+- 游戏下载的具体域名优先走直连，其他游戏流量保持原来的游戏平台策略。
+- 外部规则集从 37 条引用精简为 30 条；删除重复规则和旧 YouTube 域名黑名单，清理支付、评论等业务域名的旧拦截项。
+- 移除 URL 重写及 MITM；保留的域名广告拦截优先于服务分流。
+- 保留国内直连和最后的 `FINAL,PROXY`。
+
+修改此文件并推送到本仓库的 `main` 后，手机才能下载到新版本。配置自动更新只下载同名文件，不会自动合并上游 `shadowrocket-rules.conf` 的变更。以下 Pages 地址属于上游配置；个人版使用上面的 GitHub Raw 地址，不依赖 Pages 部署。
 
 ## 📦 配置版本选择
 
-我们提供了两个版本的配置文件，您可以根据需要选择：
+除个人配置外，仓库还保留以下两个上游版本供参考；其策略说明见下文：
 
 ### 🔥 **完整版（推荐新手）**
 - **链接**：`https://shadowrocket-rules-joe.pages.dev/shadowrocket-rules.conf`
@@ -39,22 +48,24 @@ Shadowrocket 使用方法可以查看： https://houjoe.me/posts/shadowrocket-gu
 
     *   **完整版**：`https://shadowrocket-rules-joe.pages.dev/shadowrocket-rules.conf`
     *   **极简版**：`https://raw.githubusercontent.com/houjoe0829/shadowrocket-rules-joe/refs/heads/main/shadowrocket-rules-simplified.conf`
-    *   选择其中一个版本复制链接即可
+    *   **uucloud 个人版**：`https://raw.githubusercontent.com/uucloud/shadowrocket-rules-joe/main/uucloud-shadowrocket-rules.conf`
+    *   选择其中一个版本复制原始文件链接，不要使用 GitHub 的 `blob` 页面链接。
 
 2.  **在 Shadowrocket 中添加配置**
 
     *   打开 Shadowrocket 应用。
     *   在配置界面，点击右上角的 " **+** "  加号按钮。
     *   在弹出的窗口中，粘贴你刚刚复制的配置链接。
-    *   点击 "下载" 或 "完成" 按钮，Shadowrocket 将会自动下载并应用配置。
+    *   下载后点击该配置，选择「使用配置」，确认已勾选。
+    *   首页的全局路由选择「配置」。
 
 3.  **开启自动更新 (可选)**
 
-    *   为了确保你的规则是最新的，建议开启自动更新功能。
-    *   在 Shadowrocket 的 "设置" 界面中，找到 "配置" 选项。
-    *   在配置列表中，找到你刚刚添加的规则配置。
-    *   点击进入配置详情，找到 "自动更新" 选项并开启。
-    *   你可以根据需要设置自动更新的时间间隔。
+    *   Shadowrocket → 设置 → 更新区域的「配置」→ 开启「自动后台更新」，间隔可设为每天。
+    *   iOS 设置 → 通用 → 后台 App 刷新，允许 Shadowrocket；实际执行时间受 iOS 后台调度影响。
+    *   急需更新时，点击配置文件 →「更新配置」。首页机场节点的「订阅更新」是另一项功能。
+    *   远程更新会覆盖手机上的配置修改，请把个人修改维护在本仓库的个人配置中。
+    *   功能说明参考 [Shadowrocket 使用手册：自动更新](https://github.com/LOWERTOP/Shadowrocket/wiki#自动更新)。
 
 ## 📊 版本对比
 
@@ -73,11 +84,11 @@ Shadowrocket 使用方法可以查看： https://houjoe.me/posts/shadowrocket-gu
 
 如果您想从一个版本切换到另一个版本：
 
-1. 在 Shadowrocket 中删除当前配置
-2. 添加新版本的配置链接
-3. 重新下载并应用配置
+1. 添加新版本的配置链接
+2. 下载并选择「使用配置」
+3. 确认连接正常后，再按需删除旧配置
 
-## 🗂️ 策略组说明
+## 🗂️ 上游完整版策略组说明
 
 | 策略组 | 默认节点 | 说明 |
 |--------|----------|------|
